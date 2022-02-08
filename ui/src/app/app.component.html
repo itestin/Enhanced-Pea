@@ -1,0 +1,81 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://docs.asura.pro/#/zh-cn/pea/" target="_blank">
+        <img src="./assets/img/logo.gif" alt="logo">
+        <h1>分布式压测系统</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen [nzTitle]="'menu.dashboard'|translate" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/jobs">{{'menu.runningJobs'|translate}}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/peas">{{'menu.workerPeas'|translate}}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/shoot">{{'menu.shoot'|translate}}</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen [nzTitle]="'menu.simulations'|translate" nzIcon="code">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/simulations">{{'menu.simulations'|translate}}</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen [nzTitle]="'menu.resources'|translate" nzIcon="folder">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/scripts">{{'menu.custom.script'|translate}}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/libs">{{'menu.localLibs'|translate}}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/resources">{{'menu.localData'|translate}}</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen [nzTitle]="'menu.reports'|translate" nzIcon="dot-chart">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/reports">{{'menu.localReports'|translate}}</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li nz-submenu nzOpen [nzTitle]="'menu.perform'|translate" nzIcon="rise">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a href='{{arthas_url}}' target="_blank"  title="arthas tunnel">{{'menu.arthas'|translate}}</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <span class="header-help">
+          <a href="https://docs.asura.pro/#/zh-cn/pea/" target="_blank">{{'item.help'|translate}}</a>
+          <button nz-button nzSize="small" nzType="default" (click)="changeLang()">{{lang}}</button>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

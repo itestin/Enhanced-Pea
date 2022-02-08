@@ -1,0 +1,8 @@
+<div>
+  <app-job-summary [data]="job"></app-job-summary>
+  <div>
+    <div class="member" *ngFor="let item of members">
+      <app-pea-member [data]="item"></app-pea-member>
+    </div>
+  </div>
+</div>

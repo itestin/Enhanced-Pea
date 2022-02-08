@@ -1,0 +1,82 @@
+<div style="height: 100%;">
+  <nz-divider style="margin:16px 0 8px 0;" [nzText]="scriptTpl" nzOrientation="left">
+    <ng-template #scriptTpl>
+      <span style="font-size:14px;">{{'tips.simulationList'|translate}}</span>
+      <i class="click-icon reload" nz-icon nzType="sync" nzTheme="outline" (click)="loadSimulationsData()"></i>
+    </ng-template>
+  </nz-divider>
+  <nz-list class="list" [nzDataSource]="simulations" nzBordered nzSize="small" [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <nz-list-item [nzActions]="[actions]">
+        <div class="sim">
+          <a (click)="edit(item)">{{item.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <nz-tag *ngFor="let p of item.protocols" [nzColor]="'cyan'" style="margin:0px;padding:0px 4px;">{{p}}</nz-tag>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span class="desc">{{item.description}}</span>
+        </div>
+        <ng-template #actions>
+          <a (click)="edit(item)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+  <!-- workers -->
+  <nz-divider style="margin:16px 0 8px 0;" [nzText]="workersTpl" nzOrientation="left">
+    <ng-template #workersTpl>
+      <span style="font-size:14px;">{{'tips.selectAndCompile'|translate}}</span>
+      <i class="click-icon reload" nz-icon nzType="sync" nzTheme="outline" (click)="loadWorkersData()"></i>
+    </ng-template>
+  </nz-divider>
+  <div class="check-all">
+    <label nz-checkbox [(ngModel)]="workersAllChecked" (ngModelChange)="updateAllChecked()"
+      [nzIndeterminate]="indeterminate">
+      {{'item.checkAll'|translate}}
+    </label>
+    <span class="tool">
+      <label nz-checkbox [(ngModel)]="compilePull">
+        {{'tips.runGitPull'|translate}}
+      </label>
+      <button style="color:rebeccapurple;" nz-button nzSize="small" nzType="dashed" (click)="compile()">
+        {{'item.compile'|translate}}
+      </button>
+    </span>
+  </div>
+  <nz-checkbox-wrapper style="width:100%;">
+    <div nz-row>
+      <div nz-col nzSpan="24" *ngFor="let item of workers" class="worker">
+        <label style="width:100%;" nz-checkbox [nzValue]="item" [(ngModel)]="item.checked"
+          (ngModelChange)="updateSingleChecked()">
+          <span class="item">
+            <i nz-icon nzType="info-circle" nzTheme="outline" style="margin-right:4px;color:lightcoral;" nz-popover
+              nzPopoverPlacement="topLeft" [nzPopoverContent]="contentTpl">
+            </i>
+            <ng-template #contentTpl>
+              <app-oshi-info [data]="item.status.oshi" [label]="item.status.label"></app-oshi-info>
+            </ng-template>
+            <i nz-icon nzType="number" nzTheme="outline"></i>
+            <span>{{item.member.address}}:{{item.member.port}}</span>
+          </span>
+          <span style="margin: 0 4px;" [style.color]="statusColor(item)">{{item.status.status}}</span>
+          <span class="hostname">{{item.member.hostname}}</span>
+        </label>
+      </div>
+    </div>
+  </nz-checkbox-wrapper>
+  <!-- compiler -->
+  <nz-divider style="margin:16px 0 8px 0;" [nzText]="compilerTpl" nzOrientation="left">
+    <ng-template #compilerTpl>
+      <span style="font-size:14px;">{{'tips.compilerOutput'|translate}}</span>
+    </ng-template>
+  </nz-divider>
+  <div *ngFor="let item of compilers">
+    <app-compiler-output [data]="item"></app-compiler-output>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="editVisible" [nzTitle]="editFile" (nzOnCancel)="handleEditCancel()" nzCancelText="{{'simulation.cancel'|translate}}"
+          (nzOnOk)="handleEditOk()" nzWidth="1000px" nzOkText="{{'simulation.modify'|translate}}">
+  <nz-input-group>
+    <textarea class="texts" spellcheck="false" style="font-weight: bold; width:950px; height:600px" type="text" nz-input [(ngModel)]="editContent"></textarea>
+  </nz-input-group>
+</nz-modal>

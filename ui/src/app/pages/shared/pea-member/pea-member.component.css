@@ -1,0 +1,68 @@
+.title {
+  padding-left: 8px;
+}
+
+.label {
+  color: lightslategray;
+  font-weight: 500;
+}
+
+.value {
+  color: lightslategrey;
+  font-weight: 500;
+}
+
+.margin {
+  margin-left: 16px;
+}
+
+.table {
+  margin-top: 8px;
+}
+
+.table th {
+  padding: 0px;
+  color: lightslategray;
+}
+
+.console {
+  margin-top: 4px;
+  padding: 4px;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+.inj-type>i {
+  color: lightseagreen;
+}
+
+.inj-type>span {
+  color: gray;
+  font-size: small;
+  padding-left: 4px;
+}
+
+.inj-sum {
+  margin-left: 4px;
+}
+
+.inj-sum>i {
+  color: lightseagreen;
+}
+
+.inj-sum>span {
+  color: gray;
+  font-size: small;
+  padding-left: 4px;
+}
+
+.injections {
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.addr {
+  margin-right: 8px;
+  color: lightslategray;
+}
