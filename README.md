@@ -1,4 +1,4 @@
-# loadtest
+# Enhanced Pea
 在原作者的Gatling Pea基础上进行了改进，增加了一些新的功能。
 附上原作者的博客地址https://ojlm.tech/docs/pea/
 里面有相关的资料以及原github地址
