@@ -2,6 +2,7 @@
 在原作者的Gatling Pea基础上进行了改进，增加了一些新的功能。
 附上原作者的博客地址https://ojlm.tech/docs/pea/
 里面有相关的资料以及原github地址
+当然也看下我的博客https://blog.csdn.net/wangwei19871103/article/details/122823375?spm=1001.2014.3001.5501
 
 ## Gatling Pea
 
